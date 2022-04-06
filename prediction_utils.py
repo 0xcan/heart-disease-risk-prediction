@@ -32,7 +32,8 @@ def predict(sex, age, race, height, weight, smoking, alcohol, general_health, sl
 	
 	gen_health_dict = {"Poor":0, "Fair":1, "Good":2, "Very good":3, "Excellent":4}
 	age_category_dict = {"18-24":0, "25-29":1, "30-34":2, "35-39":3, "40-44":4, "45-49":5, "50-54":6, "55-59":7, "60-64":8, "65-69":9, "70-74":10, "75-79":11, "80 or older": 12}
-	bmi               = int(weight) / (int(height)**2)
+	bmi               = int(weight) / ((int(height)/100) **2)
+	print(">>>>> bmi", bmi)
 
 	smoking           = 1 if smoking == "Yes"  else 0
 	alcohol           = 1 if alcohol == "Yes"  else 0 
