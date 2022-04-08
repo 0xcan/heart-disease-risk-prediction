@@ -2,24 +2,26 @@ import pandas as pd
 import pickle
 
 def encode_data(race, diabetic):
-	race_encoder     = pickle.load(open("utils/race_encoder.pkl", "rb"))
-	diabetic_encoder = pickle.load(open("utils/diabetic_encoder.pkl", "rb"))
+	race_encoder     = {'American Indian/Alaskan Native':0,'Asian':1,'Black':2,'Hispanic':3,'Other':4,'White':5}
+	diabetic_encoder = {'No':0, 'No, borderline diabetes':1, 'Yes':2, 'Yes (during pregnancy)':3}
 
-	encoded_race     = race_encoder.transform([race])[0]
-	encoded_diabetic = diabetic_encoder.transform([diabetic])[0]
+	encoded_race     = race_encoder[race]
+	encoded_diabetic = diabetic_encoder[diabetic]
 
 	return encoded_race, encoded_diabetic
 
 def min_max_scaling(bmi, physical_health, mental_health, sleep_time):
-	bmi_scaler             = pickle.load(open("utils/bmi_scaler.pkl", "rb"))
-	physical_health_scaler = pickle.load(open("utils/physical_health_scaler.pkl", "rb")) 
-	mental_health_scaler   = pickle.load(open("utils/mental_health_scaler.pkl", "rb")) 
-	sleep_time_scaler      = pickle.load(open("utils/sleep_time_scaler.pkl", "rb"))  
+	MAX_BMI             = 94.85
+	MIN_BMI             = 12.02
+	MAX_SLEEP_TIME      = 24.0
+	MIN_SLEEP_TIME      = 1.0
+	MAX_PHYSICAL_HEALTH, MAX_MENTAL_HEALTH = 30.0, 30.0
+	MIN_PHYSICAL_HEALTH, MIN_MENTAL_HEALTH = 0.0, 0.0
 
-	scaled_bmi             = bmi_scaler.transform([[bmi]])[0][0]
-	scaled_physical_health = physical_health_scaler.transform([[physical_health]])[0][0]
-	scaled_mental_health   = mental_health_scaler.transform([[mental_health]])[0][0]
-	scaled_sleep_time      = sleep_time_scaler.transform([[sleep_time]])[0][0]
+	scaled_bmi 			   = (bmi - MIN_BMI) / (MAX_BMI - MIN_BMI)
+	scaled_physical_health = (int(physical_health) - MIN_PHYSICAL_HEALTH) / (MAX_PHYSICAL_HEALTH - MIN_PHYSICAL_HEALTH)
+	scaled_mental_health   = (int(mental_health) - MIN_MENTAL_HEALTH) / (MAX_MENTAL_HEALTH - MIN_MENTAL_HEALTH)
+	scaled_sleep_time      = (int(sleep_time) - MIN_SLEEP_TIME) / (MAX_SLEEP_TIME - MIN_SLEEP_TIME)
 
 	return scaled_bmi, scaled_physical_health, scaled_mental_health, scaled_sleep_time
 
