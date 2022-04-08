@@ -26,7 +26,7 @@ def min_max_scaling(bmi, physical_health, mental_health, sleep_time):
 	return scaled_bmi, scaled_physical_health, scaled_mental_health, scaled_sleep_time
 
 def load_model():
-	file = open("utils/saved_model_lgbm.h5", "rb")
+	file = open("saved_model_lgbm.h5", "rb")
 	model = pickle.load(file) 
 	return model
 
