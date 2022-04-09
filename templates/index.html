@@ -10,7 +10,7 @@
       }
       body{
         min-height: 100%;
-        background: #666666;
+        background: white;';
       }
       body, div, form, input, select, p { 
       padding: 0;
@@ -18,30 +18,30 @@
       outline: none;
       font-family: Roboto, Arial, sans-serif;
       font-size: 14px;
-      color: #000000;
+      color: darkgoldenrod;
       }
       h1 {
-      color: #ffd700;
+      color: 'black;';
       margin: 0;
       font-weight: 600;
       text-align: center;
       }
       h3 { 
       margin: 12px 0;
-      color: #ffe866;
+      color: darkgoldenrod;
       }
       .main-block {
       justify-content: center;
       align-items: center;
       }
       img {
-        padding-right: 125px;
-        padding-top: 25px;
-        width: 27%;
+        padding-right: 0px;
+        padding-top: 190px;
+        width: 37%;
         float: right;
       }
       form {
-      background-color: #666666;
+      background-color: 'white;';
       width: 900px;
       height: 900px;
       margin: 0;
@@ -68,7 +68,7 @@
       width: 100%;
       }
       label {
-      color: #F5FFFA;
+      color: black;
       padding: 0 7px;
       text-align: right;
       vertical-align: middle;
@@ -127,7 +127,7 @@
     </style>
   </head>
   <body>
-    <img src="{{url_for('static', filename='doctor.png')}}">
+    <img src="{{url_for('static', filename='doctor_2.png')}}">
     <div class="main-block">
     <form action="{{url_for('get_prediction')}}" >
       <h1>Hearth Disease Prediction</h1>
